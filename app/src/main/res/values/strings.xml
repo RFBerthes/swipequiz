@@ -3,18 +3,18 @@
     <string name="appname">SwipeQuiz</string>
     <string-array
         name="perguntas">
-        <item>Pergunta 1</item>
-        <item>Pergunta 2</item>
-        <item>Pergunta 3</item>
-        <item>Pergunta 4</item>
-        <item>Pergunta 5</item>
+        <item>1 - Um raio pode derrubar o avião?</item>
+        <item>2 - CDs piratas podem danificar o seu aparelho?</item>
+        <item>3 - Se houvesse guerras no espaço, como no filme Star Wars, o barulho de tiros e perseguições seriam ouvidos?</item>
+        <item>4 - A fórmula da Coca-Cola nunca foi descoberta?</item>
+        <item>5 - A água da privada gira em sentidos diferentes no hemisfério norte e no hemisfério sul?</item>
     </string-array>
     <string-array
         name="respostasCertas">
         <item>SIM</item>
-        <item>NÃO</item>
         <item>SIM</item>
         <item>NÃO</item>
+        <item>SIM</item>
         <item>NÃO</item>
     </string-array>
 

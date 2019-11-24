@@ -3,7 +3,6 @@ package com.berthes.swipequiz;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -56,22 +55,32 @@ public class MainActivity extends AppCompatActivity {
                 perguntas = getResources().getStringArray(R.array.perguntas);
                 respostasCertas = getResources().getStringArray(R.array.respostasCertas);
                 i++;
+                if(i==5){
+                    if(alternativas[i-1].equals(respostasCertas[i-1]) && i>-1){
+                        Toast.makeText(getApplicationContext(), "RESPOSTA CERTA!", Toast.LENGTH_SHORT).show();
+                        acertos++;
+                    }else{
+                        Toast.makeText(getApplicationContext(), "OPS! ERROU...", Toast.LENGTH_SHORT).show();
+                    }
+                    i=0;
+                    Toast.makeText(getApplicationContext(), "Você acertou "+acertos+" perguntas", Toast.LENGTH_LONG).show();
+                    acertos=0;
+                }
+                tvSwipePerguntas.setText(perguntas[i]);
+                tvSwipeRespostas.setText(alternativas[i]);
 
-                if(alternativas[i-1].equals(respostasCertas[i-1])){
+                if(alternativas[i-1].equals(respostasCertas[i-1]) && i>-1){
                     Toast.makeText(getApplicationContext(), "RESPOSTA CERTA!", Toast.LENGTH_SHORT).show();
                     acertos++;
                 }else{
                     Toast.makeText(getApplicationContext(), "OPS! ERROU...", Toast.LENGTH_SHORT).show();
                 }
 
-                if(i==5){
-                    Toast.makeText(getApplicationContext(), "Você acertou "+acertos+" perguntas", Toast.LENGTH_LONG).show();
-                    i=0;
-                    acertos=0;
-                }
 
-                tvSwipePerguntas.setText(perguntas[i]);
-                tvSwipeRespostas.setText(alternativas[i]);
+
+
+
+
             }
 
             @Override

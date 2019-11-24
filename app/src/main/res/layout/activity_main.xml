@@ -11,23 +11,25 @@
 
     <TextView
         android:id="@+id/tvSwipePerguntas"
-        android:layout_width="410dp"
-        android:layout_height="360dp"
+        android:layout_width="366dp"
+        android:layout_height="352dp"
+        android:layout_marginEnd="20dp"
         android:gravity="center"
         android:text="PERGUNTAS"
         android:textAlignment="center"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/tvSwipeRespostas"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <TextView
         android:id="@+id/tvSwipeRespostas"
-        android:layout_width="411dp"
-        android:layout_height="371dp"
+        android:layout_width="410dp"
+        android:layout_height="258dp"
         android:gravity="center"
         android:text="RESPOSTAS"
         android:textAlignment="center"
