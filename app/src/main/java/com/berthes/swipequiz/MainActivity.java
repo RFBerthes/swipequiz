@@ -2,7 +2,8 @@ package com.berthes.swipequiz;
 
 import android.os.Bundle;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -11,8 +12,10 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout tela ;
     private TextView tvSwipePerguntas;
     private TextView tvSwipeRespostas;
-    String[] perguntas, alternativas;
-    int i, y;
+    String[] perguntas, respostasCertas;
+    int i, acertos;
+    String[] alternativas = new String[5];
+
 
 
     @Override
@@ -22,21 +25,20 @@ public class MainActivity extends AppCompatActivity {
 
         tvSwipePerguntas = findViewById(R.id.tvSwipePerguntas);
         tvSwipeRespostas = findViewById(R.id.tvSwipeRespostas);
+        for (int x=0; x < alternativas.length;x++){
+            alternativas[x] = "O que você acha?";
+        }
+
         tela = findViewById(R.id.tela);
-        i = 0;
-        y = -1;
+        i = -1;
+        acertos = 0;
 
-
-        tela.setOnTouchListener(new OnSwipeTouchListener(this){
+        tela.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()){
 
             @Override
             public void onSwipeBottom() {
                 super.onSwipeBottom();
-                alternativas = getResources().getStringArray(R.array.alternativas);
-                i++;
-                if(i==2){
-                    i=0;
-                }
+                alternativas[i] = "NÃO";
                 tvSwipeRespostas.setText(alternativas[i]);
 
             }
@@ -44,11 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSwipeTop() {
                 super.onSwipeTop();
-                alternativas = getResources().getStringArray(R.array.alternativas);
-                i--;
-                if(i==-1){
-                    i=1;
-                }
+                alternativas[i] = "SIM";
                 tvSwipeRespostas.setText(alternativas[i]);
             }
 
@@ -56,22 +54,37 @@ public class MainActivity extends AppCompatActivity {
             public void onSwipeLeft() {
                 super.onSwipeLeft();
                 perguntas = getResources().getStringArray(R.array.perguntas);
-                y++;
-                if(y==5){
-                    y=0;
+                respostasCertas = getResources().getStringArray(R.array.respostasCertas);
+                i++;
+
+                if(alternativas[i-1].equals(respostasCertas[i-1])){
+                    Toast.makeText(getApplicationContext(), "RESPOSTA CERTA!", Toast.LENGTH_SHORT).show();
+                    acertos++;
+                }else{
+                    Toast.makeText(getApplicationContext(), "OPS! ERROU...", Toast.LENGTH_SHORT).show();
                 }
-                tvSwipePerguntas.setText(perguntas[y]);
+
+                if(i==5){
+                    Toast.makeText(getApplicationContext(), "Você acertou "+acertos+" perguntas", Toast.LENGTH_LONG).show();
+                    i=0;
+                    acertos=0;
+                }
+
+                tvSwipePerguntas.setText(perguntas[i]);
+                tvSwipeRespostas.setText(alternativas[i]);
             }
 
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
                 perguntas = getResources().getStringArray(R.array.perguntas);
-                y--;
-                if(y==-1){
-                    y=4;
+                i--;
+                if(i==-1){
+                    i=4;
                 }
-                tvSwipePerguntas.setText(perguntas[y]);
+                tvSwipePerguntas.setText(perguntas[i]);
+                tvSwipeRespostas.setText(alternativas[i]);
+
             }
         });
 
