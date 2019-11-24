@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+//fonte perguntas: https://www.mensagenscomamor.com/verdadeiro-ou-falso
+
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout tela ;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         tvSwipePerguntas = findViewById(R.id.tvSwipePerguntas);
         tvSwipeRespostas = findViewById(R.id.tvSwipeRespostas);
         for (int x=0; x < alternativas.length;x++){
-            alternativas[x] = "O que você acha?";
+            alternativas[x] = "O que você acha...";
         }
 
         tela = findViewById(R.id.tela);
@@ -56,30 +58,25 @@ public class MainActivity extends AppCompatActivity {
                 respostasCertas = getResources().getStringArray(R.array.respostasCertas);
                 i++;
                 if(i==5){
-                    if(alternativas[i-1].equals(respostasCertas[i-1]) && i>-1){
-                        Toast.makeText(getApplicationContext(), "RESPOSTA CERTA!", Toast.LENGTH_SHORT).show();
-                        acertos++;
-                    }else{
-                        Toast.makeText(getApplicationContext(), "OPS! ERROU...", Toast.LENGTH_SHORT).show();
-                    }
                     i=0;
+                    for (int x =0;x < alternativas.length;x++){
+                        if(alternativas[x].equals(respostasCertas[x])){
+                            acertos++;
+                        }
+                    }
                     Toast.makeText(getApplicationContext(), "Você acertou "+acertos+" perguntas", Toast.LENGTH_LONG).show();
                     acertos=0;
+                    tvSwipePerguntas.setText(perguntas[i]);
+                    tvSwipeRespostas.setText(alternativas[i]);
                 }
                 tvSwipePerguntas.setText(perguntas[i]);
                 tvSwipeRespostas.setText(alternativas[i]);
 
-                if(alternativas[i-1].equals(respostasCertas[i-1]) && i>-1){
+                if(alternativas[i-1].equals(respostasCertas[i-1]) && i >= 0){
                     Toast.makeText(getApplicationContext(), "RESPOSTA CERTA!", Toast.LENGTH_SHORT).show();
-                    acertos++;
                 }else{
                     Toast.makeText(getApplicationContext(), "OPS! ERROU...", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
-
 
             }
 
@@ -87,12 +84,15 @@ public class MainActivity extends AppCompatActivity {
             public void onSwipeRight() {
                 super.onSwipeRight();
                 perguntas = getResources().getStringArray(R.array.perguntas);
-                i--;
-                if(i==-1){
-                    i=4;
+
+                if(i > 0) {
+                    i--;
+                    if (i == -1) {
+                        i = 4;
+                    }
+                    tvSwipePerguntas.setText(perguntas[i]);
+                    tvSwipeRespostas.setText(alternativas[i]);
                 }
-                tvSwipePerguntas.setText(perguntas[i]);
-                tvSwipeRespostas.setText(alternativas[i]);
 
             }
         });
