@@ -9,40 +9,69 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout tela ;
-    private TextView tvSwipe;
+    private TextView tvSwipePerguntas;
+    private TextView tvSwipeRespostas;
+    String[] perguntas, alternativas;
+    int i, y;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvSwipe = findViewById(R.id.tvSwipe);
+        tvSwipePerguntas = findViewById(R.id.tvSwipePerguntas);
+        tvSwipeRespostas = findViewById(R.id.tvSwipeRespostas);
         tela = findViewById(R.id.tela);
+        i = 0;
+        y = -1;
+
 
         tela.setOnTouchListener(new OnSwipeTouchListener(this){
 
             @Override
             public void onSwipeBottom() {
                 super.onSwipeBottom();
-                tvSwipe.setText("Para baixo");
+                alternativas = getResources().getStringArray(R.array.alternativas);
+                i++;
+                if(i==2){
+                    i=0;
+                }
+                tvSwipeRespostas.setText(alternativas[i]);
+
             }
 
             @Override
             public void onSwipeTop() {
                 super.onSwipeTop();
-                tvSwipe.setText("Para cima");
+                alternativas = getResources().getStringArray(R.array.alternativas);
+                i--;
+                if(i==-1){
+                    i=1;
+                }
+                tvSwipeRespostas.setText(alternativas[i]);
             }
 
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
-                tvSwipe.setText("Para esquerda");
+                perguntas = getResources().getStringArray(R.array.perguntas);
+                y++;
+                if(y==5){
+                    y=0;
+                }
+                tvSwipePerguntas.setText(perguntas[y]);
             }
 
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                tvSwipe.setText("Para direita");
+                perguntas = getResources().getStringArray(R.array.perguntas);
+                y--;
+                if(y==-1){
+                    y=4;
+                }
+                tvSwipePerguntas.setText(perguntas[y]);
             }
         });
 

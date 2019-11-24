@@ -4,19 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/tela"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:id="@+id/tvSwipe"
-        android:layout_width="314dp"
-        android:layout_height="47dp"
-        android:text="@string/appname"
-        android:textSize="30dp"
+        android:id="@+id/tvSwipePerguntas"
+        android:layout_width="410dp"
+        android:layout_height="360dp"
+        android:gravity="center"
+        android:text="PERGUNTAS"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSwipeRespostas"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvSwipeRespostas"
+        android:layout_width="411dp"
+        android:layout_height="371dp"
+        android:gravity="center"
+        android:text="RESPOSTAS"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

@@ -1,4 +1,28 @@
 <resources>
     <string name="app_name">swipequiz</string>
     <string name="appname">SwipeQuiz</string>
+    <string-array
+        name="perguntas">
+        <item>Pergunta 1</item>
+        <item>Pergunta 2</item>
+        <item>Pergunta 3</item>
+        <item>Pergunta 4</item>
+        <item>Pergunta 5</item>
+    </string-array>
+    <string-array
+        name="respostas">
+        <item>SIM</item>
+        <item>NÃO</item>
+        <item>SIM</item>
+        <item>NÃO</item>
+        <item>NÃO</item>
+    </string-array>
+    <string-array
+        name="alternativas">
+        <item>SIM</item>
+        <item>NÃO</item>
+
+    </string-array>
+
+
 </resources>
